@@ -1,0 +1,15 @@
+.header {
+    padding: 40px 0;
+    background: #fff;
+    // position: sticky;
+    // top: 0;
+
+    &-inner {
+        @include g-section_holder;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

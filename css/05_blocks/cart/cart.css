@@ -1,0 +1,16 @@
+.cart-price {
+  display: flex;
+  justify-content: flex-end;
+}
+.cart-price_value {
+  background: #262626;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 12px 15px;
+  display: flex;
+}
+.cart-price_currency {
+  margin-left: 5px;
+}
+
+/*# sourceMappingURL=cart.css.map */

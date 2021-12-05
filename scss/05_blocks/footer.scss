@@ -1,0 +1,31 @@
+.footer {
+    padding: 60px 0;
+
+    &-inner {
+        @include g-section_holder;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &-nav {
+        margin-left: 35px;
+        margin-right: auto;
+    }
+
+    &-link {
+        display: inline-block;
+        color: #595959;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        text-decoration: none;
+    }
+    
+    &-link:not(:last-child) {
+        margin-right: 15px;
+    }
+}

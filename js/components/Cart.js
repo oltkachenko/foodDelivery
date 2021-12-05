@@ -1,5 +1,6 @@
 import { getItemFromStorage } from "../core/helpers.js";
 import { renderCart } from "../templates/RenderCart.js";
+import { renderTotalPrice } from "../templates/RenderTotalPrice.js"
 import { Modal } from "./global/Modal.js";
 
 export class Cart extends Modal {
@@ -9,65 +10,103 @@ export class Cart extends Modal {
 
     init() {
         this.$el.addEventListener('click', () => {
-            this.showModal()
+            this.showModal();
+            console.log(this);
         })
 
-        this.cartQty1 = this.$el.querySelector('.button-cart-text');
+        this.basketTotalItems1 = this.$el.querySelector('.button-cart-text');
         this.showBasketQty();
 
-        this.eventBus().on('basket.changed', this.showBasketQty.bind(this))
+        this.eventBus().on('basket.changed', this.showBasketQty.bind(this));
+        this.eventBus().on('basket.changed', this.renderContent.bind(this));
+    }
+
+    renderContent() {
+        if(this.modal) {
+            this.price = 0;
+
+            this.cartItems = getItemFromStorage('cart');
+
+            const html = this.cartItems.map(product => {
+                this.price += product.price * product.qty;
+
+                return renderCart(product);
+            });
+
+            html.push(renderTotalPrice(this.price))
+
+            this.options.body = html.join(' ');
+            this.options.footerButtons = [
+                { class: 'button button-primary', text: 'Checkout', handler: 'modalHandlerOk' },
+                { class: 'button clear-cart', text: 'Cancel', handler: 'modalHandlerCancel' }
+            ]
+            this.setContent();
+        }
     }
 
     showModal() {
-        super.showModal()
+        super.showModal();
 
-        console.log(this);
+        if(!this.cartItems.length) {
+            this.showEmptyCart();
+            this.setContent();
+        }
 
-        this.modal.addEventListener('click', (event) => {
-            if(event.target.dataset.eventName === 'modalHandlerOk') {
-                this.modalHandlerOk()
-            } else if(event.target.dataset.eventName === 'modalHandlerCancel') {
-                this.modalHandlerCancel()
-            } else if(event.target.classList.contains('counter-button')) {
-                if(event.target.closest('.btn-dec')) {
-                    this.setQty('dec', event.target.closest('.btn-dec').dataset.pid);
-                } else if (event.target.closest('.btn-inc')) {
-                    this.setQty('inc', event.target.closest('.btn-inc').dataset.pid);
+        if(!this.events) {
+            this.modal.addEventListener('click', (event) => {
+                if(event.target.dataset.eventName === 'modalHandlerOk') {
+                    this.modalHandlerOk()
+                } else if(event.target.dataset.eventName === 'modalHandlerCancel') {
+                    this.modalHandlerCancel()
+                } else if(event.target.classList.contains('counter-button')) {
+                    if(event.target.closest('.btn-dec')) {
+                        this.setQty('dec', event.target.closest('.btn-dec').dataset.pid);
+                    } else if (event.target.closest('.btn-inc')) {
+                        this.setQty('inc', event.target.closest('.btn-inc').dataset.pid);
+                    }
+
+                    this.showBasketQty();
                 }
 
-                this.showBasketQty();
-            }
-        })
+                this.events = true;
+            })
+        }
     }
 
     setQty(value, id) {
-        this.cartQty = JSON.parse(localStorage.getItem('basketStorageNumItems'));
+        this.basketTotalItems = JSON.parse(localStorage.getItem('basketStorageNumItems'));
         const cartItem = this.cartItems.find(item => item.id === id);
 
         if(value === 'dec') {
             cartItem.qty > 0 ? cartItem.qty-- : 0;
-            this.cartQty > 0 ? this.cartQty-- : 0;
+            this.basketTotalItems > 0 ? this.basketTotalItems-- : 0;
+
+            this.price -= cartItem.price;
 
             if(cartItem.qty === 0) {
                 this.removeCartItem(id);
             }
-            if( this.cartQty === 0) {
+            if( this.basketTotalItems === 0) {
                 this.showBasketQty();
             }
         } else if (value === 'inc') {
             cartItem.qty++;
-            this.cartQty++
+            this.basketTotalItems++;
+            this.price += cartItem.price;
         }
 
         if(cartItem.qty > 0) {
             this.modal.querySelector(`.counter[data-pid="${id}"]`).textContent = cartItem.qty;
         }
 
-        localStorage.setItem('cart', JSON.stringify(this.cartItems));
-        localStorage.setItem('basketStorageNumItems', JSON.stringify(this.cartQty))
+        this.modal.querySelector('.modal-pricetag').textContent = `${this.price}`
 
-        if( this.cartQty === 0) {
+        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+        localStorage.setItem('basketStorageNumItems', JSON.stringify(this.basketTotalItems))
+
+        if( this.basketTotalItems === 0) {
             this.showEmptyCart()
+            this.setContent();
         } else {
             this.showCartItems(this.cartItems)
         }
@@ -88,7 +127,7 @@ export class Cart extends Modal {
     removeCartItem(id) {
         const index = this.cartItems.findIndex(item => item.id === id);
         this.cartItems.splice(index, 1);
-        this.modal.querySelector(`.counter[data-pid="${id}"]`).closest('.food-row').remove();
+        this.modal.querySelector(`[data-pid="${id}"]`).closest('.food-row').remove();
     }
 
     showCartItems(items) {
@@ -99,6 +138,8 @@ export class Cart extends Modal {
 
             return renderCart(product);
         });
+
+        html.push(renderTotalPrice(this.price))
 
         this.options = {
             title: 'Cart',
@@ -120,15 +161,19 @@ export class Cart extends Modal {
     showBasketQty() {
         const basketStorageNumItems = getItemFromStorage('basketStorageNumItems', 0);
 
-        this.cartQty1.textContent = basketStorageNumItems;
-        this.cartQty1.classList.remove('hide');
+        this.basketTotalItems1.textContent = basketStorageNumItems;
+        this.basketTotalItems1.classList.remove('hide');
 
         if(!basketStorageNumItems) {
-            this.cartQty1.classList.add('hide');
+            this.basketTotalItems1.classList.add('hide');
         }
     }
 
     modalHandlerCancel() {
         this.closeModal()
+    }
+
+    modalHandlerOk() {
+
     }
 }
