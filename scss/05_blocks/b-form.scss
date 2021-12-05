@@ -1,3 +1,6 @@
+@import '../00-configuration/all';
+@import '../02-components/all';
+
 .b-form {
     &-label {
         display: flex;
