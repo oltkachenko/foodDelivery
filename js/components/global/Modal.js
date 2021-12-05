@@ -15,9 +15,9 @@ export class Modal extends Base {
             classesGlobalDialog: 'has_dialog',
             classesShow: 'open',
             classesActive: 'active',
-            dialog: document.querySelector('.modal'),
-            overlay: document.querySelector('.modal-overlay'),
-            dialogWindow: document.querySelector('.modal-window'),
+            classesExtra: '',
+            overlay: this.modal.querySelector('.modal-overlay'),
+            dialogWindow: this.modal.querySelector('.modal-window'),
             closeBtn: '[data-close]',
             clickOutSide: true,
             closeByEscape: true,
@@ -38,13 +38,9 @@ export class Modal extends Base {
             this.modal = this.render();
             document.body.appendChild(this.modal);
 
-            this.btns = this.renderButtons();
+            this.renderButtons();
 
-            if(this.btns) {
-                this.prefs().dialogWindow.appendChild(this.btns);
-            }
-
-            this.modal.classList.add(this.prefs().classesShow);
+            this.addClasses();
             this.addGlobalDialogClass();
             this.addListeners();
         }
@@ -63,6 +59,12 @@ export class Modal extends Base {
             });
             this.attributes = modalData.attributes;
         }
+    }
+
+    setContent() {
+        this.modal.querySelector('.modal-body').innerHTML = this.options.body || '';
+
+        this.renderButtons();
     }
 
     onAfterCloseModal() {
@@ -95,6 +97,16 @@ export class Modal extends Base {
         this.closeBtnHandler = this.ev('click', (_, event) => {
             this.closeModal();
         }, this.prefs().closeBtn ).pop();
+    }
+
+    addClasses() {
+        const classes = [this.prefs().classesShow];
+
+        if (this.prefs().classesExtra) {
+            classes.push(this.prefs().classesExtra);
+        }
+
+        this.modal.classList.add(...classes);
     }
 
     cleanUpListeners() {
@@ -141,7 +153,7 @@ export class Modal extends Base {
     }
 
     renderButtons() {
-        if(!this.options.footerButtons) return;
+        if(!this.options.footerButtons || this.btns) return;
 
         let markup = '';
 
@@ -153,7 +165,11 @@ export class Modal extends Base {
         btns.classList.add('modal-footer');
         btns.insertAdjacentHTML('afterbegin', markup);
 
-        return btns;
+        this.btns = btns;
+
+        if(this.btns) {
+            this.prefs().dialogWindow.appendChild(this.btns);
+        }
     }
 
     render() {

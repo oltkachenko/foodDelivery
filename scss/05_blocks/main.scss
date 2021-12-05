@@ -1,0 +1,5 @@
+.main {
+    &-inner {
+        @include g-section_holder;
+    }
+}
