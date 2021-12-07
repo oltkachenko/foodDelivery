@@ -1,6 +1,3 @@
-@import '../00-configuration/all';
-@import '../02-components/all';
-
 .main {
     &-inner {
         @include g-section_holder;
