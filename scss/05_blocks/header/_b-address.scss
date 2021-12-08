@@ -1,0 +1,10 @@
+.b-address {
+    flex: 0.8;
+
+    &-input {
+        background-repeat: no-repeat;
+        background-image: url(../img/icon/home.svg);
+        background-position: 12px center;
+        padding-left: 40px;
+    }
+}

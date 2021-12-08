@@ -12,55 +12,57 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <a href="index.html" class="logo">
+    <header class="b-header">
+        <div class="b-header-inner">
+            <a href="index.html" class="b-logo">
                 <img src="img/icon/logo.svg" alt="Logo" />
             </a>
-            <label class="address">
-                <input type="text" class="input input-address" placeholder="Адрес доставки" />
+
+            <label class="b-address">
+                <input type="text" class="b-input b-address-input" placeholder="Адрес доставки" />
             </label>
-            <div class="buttons">
-                <span class="user-name"></span>
-                <button class="button button-primary button-auth" id="button-auth">
-                    <span class="button-auth-svg"></span>
-                    <span class="button-text">Войти</span>
+
+            <div class="b-header-buttons">
+                <span class="b-header-user_name hide"></span>
+
+                <button class="b-button m-primary" id="button-auth">
+                    <span class="b-button-icon m-auth"></span>
+                    <span class="b-button-text">Войти</span>
                 </button>
-                <button class="button button-primary button-out hide">
-                    <span class="button-text">Выйти</span>
-                    <span class="button-out-svg"></span>
+
+                <button class="b-button m-primary hide">
+                    <span class="b-button-text">Выйти</span>
+                    <span class="b-button-icon b-button-out-svg"></span>
                 </button>
-                <button class="button button-cart" id="cart-button">
-                    <span class="button-cart-svg"></span>
-                    <span class="button-cart-text"></span>
+
+                <button class="b-button" id="cart-button">
+                    <span class="b-button-icon m-cart"></span>
+                    <span class="b-button-text" id="button-cart-text"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="main">
-        <div class="main-inner">
-            <section class="menu">
-                <div class="section-heading" id="section-heading">
-                    
+    <main class="b-main">
+        <div class="b-main-inner">
+            <div class="b-heading" id="section-heading"></div>
+
+            <div class="l-product_grid" id="cards-menu">
+                <div class="b-loader" id="loader">
+                    <div class="b-loader-inner"><div></div><div></div></div>
                 </div>
-                <div class="cards cards-menu" id="cards-menu">
-                    <div class="loader-wrap" id="loader">
-                        <div class="lds-ripple"><div></div><div></div></div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            <img src="img/icon/logo.svg" alt="logo" class="logo footer-logo" />
-            <nav class="footer-nav">
-                <a href="#" class="footer-link">Ресторанам </a>
-                <a href="#" class="footer-link">Курьерам</a>
-                <a href="#" class="footer-link">Пресс-центр</a>
-                <a href="#" class="footer-link">Контакты</a>
+    <footer class="b-footer">
+        <div class="b-footer-inner">
+            <img src="img/icon/logo.svg" alt="logo" class="b-logo" />
+            <nav class="b-footer-nav">
+                <a href="#" class="b-footer-link">Ресторанам </a>
+                <a href="#" class="b-footer-link">Курьерам</a>
+                <a href="#" class="b-footer-link">Пресс-центр</a>
+                <a href="#" class="b-footer-link">Контакты</a>
             </nav>
             <div class="social-links">
                 <a href="#" class="social-link"><img src="img/social/instagram.svg" alt="instagram" /></a>
@@ -68,7 +70,7 @@
             </div>
         </div>
     </footer>
-    <div class="alert hide" id="alert"></div>
+    <div class="b-alert hide" id="alert"></div>
 </body>
 
 </html>

@@ -1,0 +1,26 @@
+.b-cart_product {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 12px;
+    align-items: center;
+
+    &:last-child {
+        margin-bottom: 0;
+        border: 0;
+    }
+
+    &-name {
+        margin-right: 30px;
+    }
+
+    &-price {
+        margin-left: auto;
+        margin-right: 30px;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 32px;
+    }
+}

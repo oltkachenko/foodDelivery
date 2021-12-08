@@ -12,35 +12,39 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <a class="logo">
+    <header class="b-header">
+        <div class="b-header-inner">
+            <a class="b-logo">
                 <img src="img/icon/logo.svg" alt="Logo" />
             </a>
-            <label class="address">
-                <input type="text" class="input input-address" placeholder="Адрес доставки" />
+
+            <label class="b-address">
+                <input type="text" class="b-input b-address-input" placeholder="Адрес доставки" />
             </label>
-            <div class="buttons">
-                <span class="user-name hide"></span>
-                <button class="button button-primary button-auth" id="button-auth">
-                    <span class="button-auth-svg"></span>
-                    <span class="button-text">Войти</span>
-                </button>
-                <button class="button button-primary button-out hide">
-                    <span class="button-text">Выйти</span>
-                    <span class="button-out-svg"></span>
+
+            <div class="b-header-buttons">
+                <span class="b-header-user_name hide"></span>
+
+                <button class="b-button m-primary" id="button-auth">
+                    <span class="b-button-icon m-auth"></span>
+                    <span class="b-button-text">Войти</span>
                 </button>
 
-                <button class="button button-cart" id="cart-button">
-                    <span class="button-cart-svg"></span>
-                    <span class="button-cart-text"></span>
+                <button class="b-button m-primary hide">
+                    <span class="b-button-text">Выйти</span>
+                    <span class="b-button-icon b-button-out-svg"></span>
+                </button>
+
+                <button class="b-button" id="cart-button">
+                    <span class="b-button-icon m-cart"></span>
+                    <span class="b-button-text" id="button-cart-text"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="main">
-        <div class="main-inner">
+    <main class="b-main">
+        <div class="b-main-inner">
             <section class="container-promo">
                 <section class="promo pizza">
                     <h1 class="promo-title">Онлайн-сервис <br />доставки еды на дом</h1>
@@ -67,34 +71,33 @@
                     </p>
                 </section> -->
             </section>
-            <section class="restaurants">
-                <div class="section-heading">
-                    <h2 class="section-title">Рестораны</h2>
-                    <label class="search">
-                        <input type="text" class="input input-search" placeholder="Поиск блюд и ресторанов" />
-                    </label>
+
+            <div class="b-heading">
+                <h2 class="b-heading-title">Рестораны</h2>
+                <label class="b-search">
+                    <input type="text" class="b-input b-search-input" placeholder="Поиск блюд и ресторанов" />
+                </label>
+            </div>
+            <div class="l-product_grid" id="cards-restaurants">
+                <div class="b-loader" id="loader">
+                    <div class="b-loader-inner"><div></div><div></div></div>
                 </div>
-                <div class="cards cards-restaurants" id="cards-restaurants">
-                    <div class="loader-wrap" id="loader">
-                        <div class="lds-ripple"><div></div><div></div></div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            <img src="img/icon/logo.svg" alt="logo" class="logo footer-logo" />
-            <nav class="footer-nav">
-                <a href="#" class="footer-link">Ресторанам </a>
-                <a href="#" class="footer-link">Курьерам</a>
-                <a href="#" class="footer-link">Пресс-центр</a>
-                <a href="#" class="footer-link">Контакты</a>
+    <footer class="b-footer">
+        <div class="b-footer-inner">
+            <img src="img/icon/logo.svg" alt="logo" class="b-logo" />
+            <nav class="b-footer-nav">
+                <a href="#" class="b-footer-link">Ресторанам </a>
+                <a href="#" class="b-footer-link">Курьерам</a>
+                <a href="#" class="b-footer-link">Пресс-центр</a>
+                <a href="#" class="b-footer-link">Контакты</a>
             </nav>
-            <div class="social-links">
-                <a href="#" class="social-link"><img src="img/social/instagram.svg" alt="instagram" /></a>
-                <a href="#" class="social-link"><img src="img/social/fb.svg" alt="facebook" /></a>
+            <div class="b-social">
+                <a href="#" class="b-social-link"><img src="img/social/instagram.svg" alt="instagram" /></a>
+                <a href="#" class="b-social-link"><img src="img/social/fb.svg" alt="facebook" /></a>
             </div>
         </div>
     </footer>

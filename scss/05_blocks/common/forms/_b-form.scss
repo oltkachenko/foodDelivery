@@ -1,0 +1,22 @@
+.b-form {
+    &-label {
+        display: flex;
+        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    &-section {
+        margin-top: 20px;
+
+        &:first-child {
+            margin: 0;
+        }
+    }
+
+    &-error {
+        color: #c00;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+}

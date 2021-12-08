@@ -12,12 +12,12 @@ export class Modal extends Base {
 
     prefs() {
         return {
-            classesGlobalDialog: 'has_dialog',
+            classesGlobalDialog: 'm-has_dialog',
             classesShow: 'open',
             classesActive: 'active',
             classesExtra: '',
-            overlay: this.modal.querySelector('.modal-overlay'),
-            dialogWindow: this.modal.querySelector('.modal-window'),
+            overlay: this.modal.querySelector('.b-modal-overlay'),
+            dialogWindow: this.modal.querySelector('.b-modal-window'),
             closeBtn: '[data-close]',
             clickOutSide: true,
             closeByEscape: true,
@@ -62,7 +62,7 @@ export class Modal extends Base {
     }
 
     setContent() {
-        this.modal.querySelector('.modal-body').innerHTML = this.options.body || '';
+        this.modal.querySelector('.b-modal-body').innerHTML = this.options.body || '';
 
         this.renderButtons();
     }
@@ -162,7 +162,7 @@ export class Modal extends Base {
         })
 
         const btns = document.createElement('div');
-        btns.classList.add('modal-footer');
+        btns.classList.add('b-modal-footer');
         btns.insertAdjacentHTML('afterbegin', markup);
 
         this.btns = btns;
@@ -174,23 +174,23 @@ export class Modal extends Base {
 
     render() {
         const markup = `
-            <div class="modal-window">
-                <div class="modal-header">
-                    <div class="modal-title">${this.options.title || ''}</div>
-                    <span class="modal-close" data-close>
+            <div class="b-modal-window">
+                <div class="b-modal-header">
+                    <div class="b-modal-title">${this.options.title || ''}</div>
+                    <span class="b-modal-close" data-close>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path xmlns="http://www.w3.org/2000/svg" d="M21 3.71L20.29 3 12 11.29 3.71 3 3 3.71 11.29 12 3 20.29l.71.71L12 12.71 20.29 21l.71-.71L12.71 12z"/>
                         </svg>
                     </span>
                 </div>
-                <div class="modal-body">
+                <div class="b-modal-body">
                     ${this.options.body || ''}
                 </div>
             </div>
-            <div class="modal-overlay"></div>
+            <div class="b-modal-overlay"></div>
         `
         const modal = document.createElement('div');
-        modal.classList.add('modal');
+        modal.classList.add('b-modal');
         modal.insertAdjacentHTML('afterbegin', markup);
 
         return modal;

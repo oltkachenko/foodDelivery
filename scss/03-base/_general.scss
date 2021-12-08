@@ -4,6 +4,10 @@
 
 body {
     font-family: "Roboto", sans-serif;
+
+    .m-has_dialog & {
+        overflow: hidden;
+    }
 }
 
 a,
