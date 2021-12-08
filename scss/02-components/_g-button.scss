@@ -1,0 +1,11 @@
+@mixin g-button(
+	$_mod: default,
+) {
+	@if $_mod == default {
+
+	}
+
+	@if $_mod == disabled {
+		
+	}
+}

@@ -1,0 +1,11 @@
+.b-search {
+    margin-left: auto;
+
+    &-input {
+        width: 300px;
+        background-image: url(../img/icon/search.svg);
+        background-repeat: no-repeat;
+        background-position: 12px center;
+        padding-left: 40px;
+    }
+}

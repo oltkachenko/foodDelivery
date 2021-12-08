@@ -2,10 +2,10 @@ import { CURRENCY } from "../core/config.js";
 
 export function renderTotalPrice(price) {
     const markup = `
-        <div class="cart-price">
-            <span class="cart-price_value">
-                <span class="cart-price_total modal-pricetag">${price}</span>
-                <span class="cart-price_currency">${CURRENCY}</span>
+        <div class="b-cart-price">
+            <span class="b-cart-price_value">
+                <span class="b-cart-price_total" id="cart-total-price">${price}</span>
+                <span class="b-cart-price_currency">${CURRENCY}</span>
             </span>
         </div>
     `;

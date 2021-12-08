@@ -49,16 +49,14 @@ export class Auth extends Modal {
                 <form id="logInForm" class="b-form m-login">
                     <div class="b-form-section">
                         <label class="b-form-label">Логин</label>
-                        <input id="login" name="login" class="b-form-input" type="text">
+                        <input id="login" name="login" class="b-input" type="text">
                     </div>
                     <div class="b-form-section">
                         <label class="b-form-label">Пароль</label>
-                        <input id="password" name="password" class="b-form-input" type="password">
+                        <input id="password" name="password" class="b-input" type="password">
                     </div>
-                    <div class="modal-footer">
-                        <div class="footer-buttons">
-                            <button class="button button-primary button-login" type="submit">Войти</button>
-                        </div>
+                    <div class="b-modal-footer">
+                        <button class="b-button m-primary button-login" type="submit">Войти</button>
                     </div>
                 </form>
             `

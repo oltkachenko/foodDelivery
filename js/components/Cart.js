@@ -14,7 +14,7 @@ export class Cart extends Modal {
             console.log(this);
         })
 
-        this.basketTotalItems1 = this.$el.querySelector('.button-cart-text');
+        this.basketTotalItems1 = this.$el.querySelector('#button-cart-text');
         this.showBasketQty();
 
         this.eventBus().on('basket.changed', this.showBasketQty.bind(this));
@@ -37,8 +37,8 @@ export class Cart extends Modal {
 
             this.options.body = html.join(' ');
             this.options.footerButtons = [
-                { class: 'button button-primary', text: 'Checkout', handler: 'modalHandlerOk' },
-                { class: 'button clear-cart', text: 'Cancel', handler: 'modalHandlerCancel' }
+                { class: 'b-button m-primary', text: 'Checkout', handler: 'modalHandlerOk' },
+                { class: 'b-button', text: 'Cancel', handler: 'modalHandlerCancel' }
             ]
             this.setContent();
         }
@@ -58,7 +58,7 @@ export class Cart extends Modal {
                     this.modalHandlerOk()
                 } else if(event.target.dataset.eventName === 'modalHandlerCancel') {
                     this.modalHandlerCancel()
-                } else if(event.target.classList.contains('counter-button')) {
+                } else if(event.target.classList.contains('b-button')) {
                     if(event.target.closest('.btn-dec')) {
                         this.setQty('dec', event.target.closest('.btn-dec').dataset.pid);
                     } else if (event.target.closest('.btn-inc')) {
@@ -99,7 +99,7 @@ export class Cart extends Modal {
             this.modal.querySelector(`.counter[data-pid="${id}"]`).textContent = cartItem.qty;
         }
 
-        this.modal.querySelector('.modal-pricetag').textContent = `${this.price}`
+        this.modal.querySelector('#cart-total-price').textContent = `${this.price}`
 
         localStorage.setItem('cart', JSON.stringify(this.cartItems));
         localStorage.setItem('basketStorageNumItems', JSON.stringify(this.basketTotalItems))
@@ -127,7 +127,7 @@ export class Cart extends Modal {
     removeCartItem(id) {
         const index = this.cartItems.findIndex(item => item.id === id);
         this.cartItems.splice(index, 1);
-        this.modal.querySelector(`[data-pid="${id}"]`).closest('.food-row').remove();
+        this.modal.querySelector(`[data-pid="${id}"]`).closest('.b-cart_product').remove();
     }
 
     showCartItems(items) {
@@ -145,8 +145,8 @@ export class Cart extends Modal {
             title: 'Cart',
             body: html.join(' '),
             footerButtons: [
-                { class: 'button button-primary', text: 'Checkout', handler: 'modalHandlerOk' },
-                { class: 'button clear-cart', text: 'Cancel', handler: 'modalHandlerCancel' }
+                { class: 'b-button m-primary', text: 'Checkout', handler: 'modalHandlerOk' },
+                { class: 'b-button', text: 'Cancel', handler: 'modalHandlerCancel' }
             ]
         }
     }
